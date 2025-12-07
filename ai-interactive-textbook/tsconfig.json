@@ -1,8 +1,22 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",      // root of your project
+    "paths": {
+      "@site/*": ["./*"] // maps @site/* to the project root
+    }a
   },
-  "exclude": [".docusaurus", "build"]
+  "include": [
+    "src",
+    "docs",
+    ".docusaurus",
+    "sidebars.ts",       // explicitly include sidebars
+    "docusaurus.config.ts" // include config if using TS
+  ],
+  "exclude": [
+    "build",
+    "node_modules"
+  ]
 }
+
+
