@@ -31,7 +31,14 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **I. Code Quality**: All code, including frontend, backend, and agent code, must adhere to the highest quality standards.
+- [ ] **II. Content Consistency**: All written content must maintain a consistent style, formatting, and terminology.
+- [ ] **III. Rigorous Testing**: A comprehensive testing strategy is mandatory for all critical components.
+- [ ] **IV. Chatbot Reliability and Accuracy**: The chatbot must provide reliable and accurate responses.
+- [ ] **V. Performance Optimization**: All components must be optimized for performance.
+- [ ] **VI. Accessibility**: The application must be accessible to all users.
+- [ ] **VII. User Experience Consistency**: A consistent and intuitive user experience must be maintained across all user-facing components.
+- [ ] **VIII. Comprehensive Documentation**: All components must be thoroughly documented.
 
 ## Project Structure
 

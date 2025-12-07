@@ -1,0 +1,127 @@
+openapi: 3.0.0
+info:
+  title: AI-Native Interactive Textbook API
+  version: 1.0.0
+paths:
+  /auth/signup:
+    post:
+      summary: Create a new user account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserSignup'
+      responses:
+        '201':
+          description: User created successfully.
+  /auth/login:
+    post:
+      summary: Log in a user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+      responses:
+        '200':
+          description: User logged in successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserToken'
+  /chatbot:
+    post:
+      summary: Interact with the chatbot.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatbotRequest'
+      responses:
+        '200':
+          description: Chatbot response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatbotResponse'
+  /chapters/{chapter_id}/personalize:
+    post:
+      summary: Personalize a chapter for the user.
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Personalized chapter content.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+  /chapters/{chapter_id}/translate:
+    post:
+      summary: Translate a chapter to Urdu.
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Translated chapter content.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Chapter'
+components:
+  schemas:
+    UserSignup:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+        profile:
+          type: object
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    UserToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+    ChatbotRequest:
+      type: object
+      properties:
+        query:
+          type: string
+        context:
+          type: string
+    ChatbotResponse:
+      type: object
+      properties:
+        response:
+          type: string
+    Chapter:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string

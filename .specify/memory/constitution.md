@@ -1,55 +1,70 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+
+- Version change: N/A → 1.0.0
+- Modified Principles:
+  - [PRINCIPLE_1_NAME] → I. Code Quality
+  - [PRINCIPLE_2_NAME] → II. Content Consistency
+  - [PRINCIPLE_3_NAME] → III. Rigorous Testing
+  - [PRINCIPLE_4_NAME] → IV. Chatbot Reliability and Accuracy
+  - [PRINCIPLE_5_NAME] → V. Performance Optimization
+  - [PRINCIPLE_6_NAME] → VI. Accessibility
+- Added Sections:
+  - VII. User Experience Consistency
+  - VIII. Comprehensive Documentation
+  - Development Workflow
+  - Quality Gates
+- Removed Sections: None
+- Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md
+  - ✅ .specify/templates/tasks-template.md
+  - ✅ .gemini/commands/sp.constitution.toml
+- Follow-up TODOs: None
+-->
+# Claude Project Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Code Quality
+All code, including frontend, backend, and agent code, must adhere to the highest quality standards. This includes following established coding conventions, writing clean, maintainable, and well-documented code.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Content Consistency
+All written content must maintain a consistent style, formatting, and terminology throughout all chapters and documentation. A project-wide style guide will be maintained and enforced.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Rigorous Testing
+A comprehensive testing strategy is mandatory. This includes unit, integration, and end-to-end tests for all critical components, including the RAG pipeline, API endpoints, authentication, and chatbot functionalities.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Chatbot Reliability and Accuracy
+The chatbot must provide reliable and accurate responses. The Retrieval-Augmented Generation (RAG) pipeline must be continuously evaluated and improved to ensure the quality of retrieved information.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Performance Optimization
+All components must be optimized for performance. This includes fast page loads for Docusaurus, efficient backend inference, and optimized vector search to ensure a smooth user experience.
 
-### [PRINCIPLE_6_NAME]
+### VI. Accessibility
+The application must be accessible to all users. This includes adhering to WCAG guidelines, ensuring readable typography, proper color contrast, and clear, intuitive navigation.
 
+### VII. User Experience Consistency
+A consistent and intuitive user experience must be maintained across all user-facing components, including the main book content, chatbot, authentication screens, and personalization features.
 
-[PRINCIPLE__DESCRIPTION]
+### VIII. Comprehensive Documentation
+All components must be thoroughly documented to facilitate understanding, maintenance, and extension by future contributors and instructors. This includes code comments, API documentation, and architectural diagrams.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- All changes must be submitted through pull requests.
+- All pull requests must be reviewed by at least one other contributor.
+- All pull requests must pass all automated checks before being merged.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Quality Gates
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Code coverage must not decrease.
+- All new features must be accompanied by tests.
+- All reported bugs must have a corresponding regression test.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- This constitution is the single source of truth for all development principles.
+- Amendments to this constitution must be proposed via a pull request and approved by the project maintainers.
+- All contributors are expected to adhere to the principles outlined in this document.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07

@@ -1,0 +1,22 @@
+# npmignore for Docusaurus project
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+*.log
+.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Dependencies
+node_modules/
+
+# Production
+build/
+
+# Generated files
+.docusaurus/

@@ -1,0 +1,30 @@
+# book.yaml for AI-Native Interactive Textbook
+# This file is used by Spec-Kit Plus to define the book structure and generation settings.
+
+# Output configuration
+output_dir: ai-interactive-textbook/docs/
+
+# Chapters of the book
+chapters:
+  - title: Overview of Physical AI & Humanoid Robotics
+    slug: overview-of-physical-ai-humanoid-robotics
+  - title: Introduction to Physical AI and Embodied Intelligence
+    slug: introduction-to-physical-ai-and-embodied-intelligence
+  - title: ROS 2 Fundamentals
+    slug: ros-2-fundamentals
+  - title: Gazebo Simulation and Unity Visualization
+    slug: gazebo-simulation-and-unity-visualization
+  - title: NVIDIA Isaac Platform and AI-Robot Brain
+    slug: nvidia-isaac-platform-and-ai-robot-brain
+  - title: Humanoid Robotics Development
+    slug: humanoid-robotics-development
+  - title: Conversational Robotics using LLMs
+    slug: conversational-robotics-using-llms
+  - title: Hardware Requirements and Lab Setup
+    slug: hardware-requirements-and-lab-setup
+  - title: Cloud-Native Lab Architecture
+    slug: cloud-native-lab-architecture
+  - title: Edge Kits, Digital Twin, and Robot Options
+    slug: edge-kits-digital-twin-and-robot-options
+  - title: Capstone: Building the Autonomous Humanoid
+    slug: capstone-building-the-autonomous-humanoid
