@@ -1,22 +1,16 @@
 {
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "baseUrl": ".",      // root of your project
+    "baseUrl": ".",
     "paths": {
-      "@site/*": ["./*"] // maps @site/* to the project root
-    }a
+      "@site/*": ["./*"]
+    }
   },
   "include": [
     "src",
     "docs",
     ".docusaurus",
-    "sidebars.ts",       // explicitly include sidebars
-    "docusaurus.config.ts" // include config if using TS
-  ],
-  "exclude": [
-    "build",
-    "node_modules"
+    "sidebars.ts",
+    "docusaurus.config.ts"
   ]
 }
-
-
