@@ -25,9 +25,7 @@ const config: Config = {
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'throw',       // keeps broken links check on
-  onBrokenMarkdownLinks: 'warn', // warns but doesn't break build
-
+  onBrokenLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -105,7 +103,7 @@ const config: Config = {
           items: [
             {
               label: 'Tutorial',
-              to: '/docs/welcome',
+              to: '/docs/intro',
             },
           ],
         },
