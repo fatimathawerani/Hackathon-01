@@ -16,7 +16,7 @@ const config: Config = {
 
   // Set the production url of your site here
   url: 'https://fatimathawerani01.github.io',
-  baseUrl: '/Hackathon-01/',
+  baseUrl: '/',
   organizationName: 'fatimathawerani01',
   projectName: 'Hackathon-01',
   deploymentBranch: 'gh-pages',
