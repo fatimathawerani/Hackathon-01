@@ -1,55 +1,78 @@
-# Quickstart Guide: AI-Native Interactive Textbook Structure
+# Quickstart Guide: Building the Docusaurus Book
 
-This guide provides instructions to quickly set up and view the generated AI-Native Interactive Textbook structure using Docusaurus.
+This guide provides the essential steps to set up, build, and view the Docusaurus-based textbook.
 
 ## Prerequisites
 
 - Node.js (LTS version recommended)
-- npm or Yarn (npm is used in these instructions)
+- An npm-compatible package manager (e.g., npm, yarn, pnpm)
 
-## Steps
+## 1. Project Setup
 
-### 1. Navigate to the Docusaurus Project
+If you are starting from scratch, initialize a new Docusaurus project.
 
-Ensure you are in the root directory of your Docusaurus project, which is assumed to be `ai-interactive-textbook/`:
+```bash
+# This will create a new Docusaurus site in a directory named 'ai-interactive-textbook'
+npm init docusaurus@latest ai-interactive-textbook --typescript
+```
 
+Navigate into your newly created project directory:
 ```bash
 cd ai-interactive-textbook
 ```
 
-### 2. Install Dependencies
-
-If you haven't already, install the necessary Node.js dependencies for Docusaurus:
-
+Install the dependencies:
 ```bash
 npm install
-# or
-yarn install
 ```
 
-### 3. Build the Docusaurus Site
+## 2. Content Scaffolding
 
-Generate the static build of your Docusaurus site. This will process the Markdown files (including the newly generated chapter files) and create a production-ready output in the `build/` directory:
+Follow the file structure outlined in the `plan.md` to create the chapter and lesson files. For example:
+
+```
+docs
+├── 01-getting-started/
+│   ├── _category_.json
+│   └── 01-introduction.md
+└── intro.md
+```
+
+**`_category_.json` Example:**
+```json
+{
+  "label": "1. Getting Started",
+  "position": 1
+}
+```
+
+**`01-introduction.md` Example:**
+```markdown
+---
+title: Introduction to the Course
+---
+
+# Introduction to the Course
+
+<!-- TODO: Add lesson content here -->
+```
+
+## 3. Running the Development Server
+
+To preview your site as you make changes, run the development server:
+
+```bash
+npm start
+```
+
+This will open a browser window to `http://localhost:3000` where you can see your book, with live reloading as you edit files.
+
+## 4. Building the Static Site
+
+When you are ready to deploy, create a production-ready static build of your site:
 
 ```bash
 npm run build
-# or
-yarn build
 ```
 
-### 4. Start the Docusaurus Development Server
-
-To view the textbook locally in your browser, start the Docusaurus development server:
-
-```bash
-npm run start
-# or
-yarn start
-```
-
-This command will usually open your browser to `http://localhost:3000/` (or another available port). You should see the textbook's home page and be able to navigate through the generated chapters using the sidebar.
-
-## Important Notes
-
-- **Chapter Content**: The generated chapter Markdown files currently contain only a title and a "TODO" placeholder. You will need to add the actual content for each chapter.
-- **Sidebars**: Docusaurus automatically detects Markdown files in the `docs/` directory. The chapter numbering (e.g., `01-`, `02-`) will ensure the correct order in the sidebar navigation.
+The output will be generated in the `build/` directory. You can then serve these static files from any web server.

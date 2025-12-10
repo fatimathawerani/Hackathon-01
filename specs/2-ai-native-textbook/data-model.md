@@ -1,30 +1,42 @@
 # Data Model: AI-Native Interactive Textbook
 
+This data model reflects the hierarchical structure of the Docusaurus book as outlined in the implementation plan.
+
 ## Entities
 
-### Textbook
+### Book
 
-**Description**: Represents the entire interactive textbook. It is a logical collection of chapters that together form the course material.
+**Description**: Represents the entire Docusaurus project and the collection of all content.
 
 **Attributes**:
-- **id**: A unique identifier for the textbook (implicit, not explicitly generated but represents the overall book).
-- **title**: The title of the textbook ("Physical AI & Humanoid Robotics Course Textbook").
+- **title**: The overall title of the book, configured in `docusaurus.config.ts`.
+- **structure**: The collection of chapters that make up the book.
 
 **Relationships**:
-- **Has Many**: Chapters (a Textbook is composed of multiple Chapters).
+- **Has Many**: Chapters
 
 ### Chapter
 
-**Description**: Represents a single section or unit within the Textbook. Each chapter corresponds to a distinct Markdown file and has a defined order within the textbook.
+**Description**: A logical grouping of related lessons, represented by a directory within the `docs` folder.
 
 **Attributes**:
-- **id**: A unique identifier for the chapter (implicit, often derived from its order and title).
-- **title**: The full, human-readable title of the chapter (e.g., "Overview of Physical AI & Humanoid Robotics").
-- **slug**: A URL-friendly and file-system-safe version of the title, used for file naming (e.g., "overview-of-physical-ai-humanoid-robotics").
-- **order**: A numerical value indicating the sequence of the chapter within the textbook (e.g., `01`, `02`).
-- **file_name**: The complete file name for the Markdown file (e.g., `01-overview-of-physical-ai-humanoid-robotics.md`).
-- **file_path**: The absolute or relative path where the Markdown file is stored (e.g., `ai-interactive-textbook/docs/01-overview-of-physical-ai-humanoid-robotics.md`).
-- **content**: The Markdown content of the chapter, including frontmatter, H1 title, and a TODO placeholder.
+- **order**: A numerical prefix in the directory name (e.g., `01-`) that defines its sequence.
+- **slug**: The human-readable part of the directory name (e.g., `chapter-one`).
+- **label**: The display name for the chapter in the sidebar, defined in the `_category_.json` file.
 
 **Relationships**:
-- **Belongs To**: Textbook (each Chapter is part of a Textbook).
+- **Belongs To**: Book
+- **Has Many**: Lessons
+
+### Lesson
+
+**Description**: An individual content page within a chapter, represented by a Markdown file.
+
+**Attributes**:
+- **order**: A numerical prefix in the filename (e.g., `01-`) that defines its sequence within the chapter.
+- **slug**: The human-readable part of the filename (e.g., `lesson-one.md`).
+- **title**: The display title of the lesson, defined in the frontmatter of the Markdown file.
+- **content**: The Markdown body of the lesson.
+
+**Relationships**:
+- **Belongs To**: Chapter

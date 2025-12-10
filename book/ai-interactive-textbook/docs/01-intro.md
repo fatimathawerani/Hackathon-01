@@ -1,5 +1,10 @@
 ---
-title: "Overview of Physical AI & Humanoid Robotics"
+title: Introduction
+slug: /docs/intro
+---
+
+# Welcome to Your AI Interactive Textbook
+
 ---
 
 # Overview of Physical AI & Humanoid Robotics
