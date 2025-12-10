@@ -1,11 +1,71 @@
 .features {
   display: flex;
-  align-items: center;
-  padding: 2rem 0;
+  flex-wrap: wrap;         /* Allow wrapping on smaller screens */
+  justify-content: center; /* Center features */
+  gap: 2rem;               /* Space between cards */
+  padding: 3rem 0;
   width: 100%;
 }
 
+/* Each feature card */
+.featureCard {
+  background: linear-gradient(135deg, #081738, #0a1f44); /* Dark navy gradient */
+  color: #fde3f1;
+  flex: 1 1 250px;        /* Responsive width */
+  max-width: 300px;
+  min-width: 250px;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect */
+.featureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(79, 156, 249, 0.6); /* Accent glow */
+}
+
+/* Feature SVG */
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s;
+}
+
+/* SVG hover effect */
+.featureCard:hover .featureSvg {
+  transform: scale(1.1) rotate(10deg);
+}
+
+/* Feature title */
+.featureTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #a7dfff;
+}
+
+/* Feature description */
+.featureDescription {
+  font-size: 1rem;
+  color: #fde3f1;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .featureCard {
+    max-width: 90%;
+  }
+  .featureSvg {
+    height: 120px;
+    width: 120px;
+  }
 }
