@@ -15,17 +15,14 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  url: 'https://fatimathawerani01.github.io',
+  baseUrl: '/Hackathon-01/',
+  organizationName: 'fatimathawerani01',
+  projectName: 'Hackathon-01',
+  deploymentBranch: 'gh-pages',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -75,26 +72,30 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
-      },
+  title: 'My Site',
+  logo: {
+    alt: 'My Site Logo',
+    src: 'img/logo.svg',
+  },
+  items: [
+    { to: '/docs/intro', label: 'Docs', position: 'left' },
+    { to: '/blog', label: 'Blog', position: 'left' },
+    {
+      label: 'More',
+      position: 'left',
       items: [
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
-        },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
-        },
+        { to: '/about', label: 'About' },
+        { to: '/contact', label: 'Contact' },
       ],
     },
+    {
+      href: 'https://github.com/fatimathawerani01/Hackathon-01',
+      label: 'GitHub',
+      position: 'right',
+    },
+  ],
+},
+
     footer: {
       style: 'dark',
       links: [
