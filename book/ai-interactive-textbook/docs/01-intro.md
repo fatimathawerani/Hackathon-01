@@ -1,6 +1,5 @@
 ---
 title: Introduction
-slug: /docs/intro
 ---
 
 # Welcome to Your AI Interactive Textbook
