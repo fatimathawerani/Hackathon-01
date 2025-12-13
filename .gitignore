@@ -22,3 +22,11 @@ package-lock.json
 # Docusaurus
 .docusaurus/
 build/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+*.egg-info/
