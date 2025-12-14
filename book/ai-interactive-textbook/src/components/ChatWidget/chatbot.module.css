@@ -6,7 +6,7 @@
 }
 
 .chatButton {
-  background-color: #007bff;
+  background-color: #132130;
   color: white;
   border: none;
   border-radius: 50%;
@@ -35,7 +35,7 @@
 }
 
 .chatHeader {
-  background-color: #007bff;
+  background-color: #36597e;
   color: white;
   padding: 10px;
   display: flex;
@@ -69,7 +69,7 @@
 }
 
 .user {
-  background-color: #007bff;
+  background-color: #0a2a4d;
   color: white;
   align-self: flex-end;
   margin-left: auto; /* Pushes user messages to the right */
@@ -98,7 +98,7 @@
 }
 
 .sendButton {
-  background-color: #28a745;
+  background-color: #03092b;
   color: white;
   border: none;
   border-radius: 20px;
