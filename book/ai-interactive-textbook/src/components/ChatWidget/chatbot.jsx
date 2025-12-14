@@ -13,30 +13,56 @@ const ChatWidget = () => {
   };
 
   const handleSendMessage = async () => {
-    if (inputMessage.trim() === '') return;
+  if (!inputMessage.trim()) return;
 
-    const newMessage = { text: inputMessage, sender: 'user' };
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
-    setInputMessage('');
-    setIsTyping(true);
+  const userMessage = inputMessage;
 
-    try {
-      const response = await fetch('http://localhost:8000/ask', {
+  // Show user message immediately
+  setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
+  setInputMessage('');
+  setIsTyping(true);
+
+  try {
+    const response = await fetch(
+      'https://backend-hackathon-01.vercel.app/ask',
+      {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: inputMessage }),
-      });
-      const data = await response.json();
-      setMessages((prevMessages) => [...prevMessages, { text: data.reply, sender: 'bot' }]);
-    } catch (error) {
-      console.error('Error sending message:', error);
-      setMessages((prevMessages) => [...prevMessages, { text: 'Error: Could not connect to the chatbot.', sender: 'bot' }]);
-    } finally {
-      setIsTyping(false);
+        body: JSON.stringify({
+          messages: [
+            {
+              role: 'user',
+              text: userMessage,
+            },
+          ],
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
     }
-  };
+
+    const data = await response.json();
+
+    // ✅ Backend returns { role: "bot", text: "..." }
+    setMessages(prev => [
+      ...prev,
+      { text: data.text, sender: 'bot' },
+    ]);
+  } catch (error) {
+    console.error('Chatbot error:', error);
+    setMessages(prev => [
+      ...prev,
+      { text: 'Could not connect to chatbot.', sender: 'bot' },
+    ]);
+  } finally {
+    setIsTyping(false);
+  }
+};
+
 
   const handleClearChat = () => {
     setMessages([]);
