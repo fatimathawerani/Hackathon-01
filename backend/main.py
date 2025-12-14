@@ -5,7 +5,7 @@ from agents import Agent, Runner
 import os
 from dotenv import load_dotenv
 from typing import List, Literal
-from my_config import config ,gemini_key
+from my_config import openrouter_key, open_router_config
 load_dotenv()
 
 app = FastAPI()
@@ -78,7 +78,7 @@ async def chat(request: ChatRequest):
     result = await Runner.run(
         agent,
         input=conversation_input,
-        run_config=config,
+        run_config=open_router_config,
     )
 
     print("✅ Response generated successfully")
@@ -90,7 +90,7 @@ async def chat(request: ChatRequest):
 async def health():
     return {
         "status": "healthy",
-        "response": "api set" if gemini_key else "API key missing",
-        "api_key_set": bool(gemini_key),
+        "response": "api set" if openrouter_key else "API key missing",
+        "api_key_set": bool(openrouter_key),
         "web_url": os.getenv("WEB_URL", "not set"),
     }
