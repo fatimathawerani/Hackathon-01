@@ -15,11 +15,11 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://fatimathawerani01.github.io',
+  url: 'https://hackathon-01-eta.vercel.app/',
   baseUrl: '/',
   organizationName: 'fatimathawerani01',
   projectName: 'Hackathon-01',
-  deploymentBranch: 'gh-pages',
+  deploymentBranch: 'main',
 
 
   onBrokenLinks: 'warn',
@@ -88,6 +88,8 @@ const config: Config = {
         { to: '/contact', label: 'Contact' },
       ],
     },
+    { to: '/signup', label: 'Sign Up', position: 'right' },
+    { to: '/signin', label: 'Sign In', position: 'right' },
     {
       href: 'https://github.com/fatimathawerani01/Hackathon-01',
       label: 'GitHub',

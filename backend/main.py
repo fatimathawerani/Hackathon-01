@@ -6,6 +6,9 @@ import os
 from dotenv import load_dotenv
 from typing import List, Literal
 from my_config import openrouter_key, open_router_config
+from services.translation import translation_service
+from intelligence import get_prompt_instructions
+
 load_dotenv()
 
 app = FastAPI()
@@ -24,6 +27,10 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
+    user_profile: dict = None
+
+class TranslateRequest(BaseModel):
+    content: str
 
 # Setup OpenRouter client - USE ONLY OPENROUTER_API_KEY
 
@@ -33,40 +40,11 @@ async def chat(request: ChatRequest):
     
     print("📥 Received messages:", request.messages)
     
+    instructions = get_prompt_instructions(request.user_profile)
+
     agent = Agent(
         name="Physical AI & Humanoid Robotics Agent",
-        instructions="""
-        You are the specialized AI Assistant for the "Physical AI & Humanoid Robotics" Capstone Course. 
-        Your goal is to help students understand the curriculum, hardware requirements, and technical concepts of bridging the digital brain with the physical body.
-
-        ### COURSE CONTEXT & KNOWLEDGE BASE:
-        
-        **Focus:** AI Systems in the Physical World (Embodied Intelligence).
-        **Goal:** Applying AI to control Humanoid Robots in simulated and real-world environments using ROS 2, Gazebo, and NVIDIA Isaac.
-
-        **Module Breakdown:**
-        1. **The Robotic Nervous System (ROS 2):** Nodes, Topics, Services, rclpy, URDF.
-        2. **The Digital Twin (Gazebo & Unity):** Physics simulation, LiDAR/Depth sensors, collision dynamics.
-        3. **The AI-Robot Brain (NVIDIA Isaac):** Isaac Sim (Photorealistic sim), Isaac ROS (VSLAM), Nav2 (Path planning).
-        4. **Vision-Language-Action (VLA):** OpenAI Whisper (Voice), LLMs for cognitive planning ("Clean the room" -> ROS actions).
-
-        **Hardware Requirements (Critical):**
-        - **Sim Rig (Workstation):** Must have NVIDIA RTX 4070 Ti (12GB VRAM) or higher (Ideal: RTX 3090/4090). CPU: i7 13th Gen+. RAM: 64GB DDR5. OS: Ubuntu 22.04 LTS.
-        - **Edge AI Kit:** NVIDIA Jetson Orin Nano (8GB) or Orin NX.
-        - **Sensors:** Intel RealSense D435i (Vision+Depth), Generic USB IMU, ReSpeaker Mic Array.
-        - **Robots:** Unitree Go2 Edu (Quadruped proxy), Unitree G1 (Humanoid), or Hiwonder TonyPi Pro (Budget/Kinematics only).
-
-        **Lab Setup Options:**
-        - **On-Prem (High CapEx):** Buying physical PCs and robots.
-        - **Cloud/Ether Lab (High OpEx):** AWS g5.2xlarge instances (~$205/quarter) + Local Jetson Kit ($700) for deployment.
-        
-        ### ANSWERING GUIDELINES:
-        - **Tone:** Technical, academic, and helpful. 
-        - **Format:** Use Markdown (bolding key terms, using bullet points for lists).
-        - **Scope:** Answer strictly based on the provided course material.
-        - **Refusals:** Polite decline to answer off-topic questions by stating you are restricted to the Physical AI course context.
-        - **Hardware Questions:** Be very specific about specs (VRAM, OS versions) as this is a technical bottleneck for the course.
-        """,
+        instructions=instructions,
     )
 
     print("⚙️ Running agent (Non-Streamed)...")
@@ -85,6 +63,10 @@ async def chat(request: ChatRequest):
     
     return {"role": "bot", "text": result.final_output}
 
+@app.post("/translate")
+async def translate(request: TranslateRequest):
+    translated_content = translation_service.translate(request.content, "Urdu")
+    return {"translated_content": translated_content}
 
 @app.get("/")
 async def health():

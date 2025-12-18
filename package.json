@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "@docusaurus/tsconfig": "^3.9.2"
+    "@docusaurus/tsconfig": "^3.9.2",
+    "better-auth": "^1.4.7"
   },
   "devDependencies": {
     "@types/react": "^19.2.7",

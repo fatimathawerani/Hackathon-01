@@ -1,4 +1,4 @@
----
+--- 
 title: Introduction
 ---
 
@@ -29,3 +29,5 @@ By the end of this book, you will be able to:
 
 ## The "AI-Native" Approach
 Unlike traditional robotics courses that focus heavily on control theory first, this course is **AI-Native**. We prioritize learning how to use data-driven approaches, reinforcement learning, and pre-trained foundation models to solve robotic challenges.-->
+
+
