@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./ChapterTranslator.module.css";
 
 type Props = {
   originalContent: string;
@@ -83,27 +84,38 @@ ${originalContent}
   };
 
   return (
-    <div style={{ marginBottom: "24px" }}>
-      {mode !== "original" ? (
-        <button onClick={handleShowOriginal}>↩ Show Original</button>
-      ) : (
-        <>
-          <button onClick={handleTranslate}>Translate to Urdu</button>
-          {isAuthenticated && (
-            <button onClick={handlePersonalize} style={{ marginLeft: "10px" }}>
-              Personalize
+    <div className={styles.chapterActionsWrapper}>
+      <div className={styles.actions}>
+        {mode !== "original" ? (
+          <button
+            className={`${styles.button} ${styles.resetButton}`}
+            onClick={handleShowOriginal}
+          >
+            ↩ Show Original
+          </button>
+        ) : (
+          <>
+            <button className={styles.button} onClick={handleTranslate}>
+              Translate to Urdu
             </button>
-          )}
-        </>
-      )}
+            {isAuthenticated && (
+              <button
+                className={`${styles.button} ${styles.personalizeButton}`}
+                onClick={handlePersonalize}
+              >
+                Personalize
+              </button>
+            )}
+          </>
+        )}
+      </div>
 
-      {loading && <p> Processing...</p>}
+      {loading && <p className={styles.loadingText}>Processing...</p>}
 
       <div
-        style={{
-          marginTop: "20px",
-          direction: mode === "translated" ? "rtl" : "ltr",
-        }}
+        className={`${styles.contentWrapper} ${
+          mode === "translated" ? styles.urduContent : ""
+        }`}
       >
         <p>{content}</p>
       </div>
