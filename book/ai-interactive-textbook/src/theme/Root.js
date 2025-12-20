@@ -8,6 +8,7 @@ export default function Root({ children }) {
       {children}
       <ChapterActions />
       <ChatWidget />
+      
     </>
   );
 }

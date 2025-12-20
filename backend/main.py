@@ -6,8 +6,6 @@ import os
 from dotenv import load_dotenv
 from typing import List, Literal
 from my_config import openrouter_key, open_router_config
-from services.translation import translation_service
-from intelligence import get_prompt_instructions
 
 load_dotenv()
 
@@ -65,7 +63,7 @@ async def chat(request: ChatRequest):
 
 @app.post("/translate")
 async def translate(request: TranslateRequest):
-    translated_content = translation_service.translate(request.content, "Urdu")
+    translated_content = services.translate(request.content, "Urdu")
     return {"translated_content": translated_content}
 
 @app.get("/")

@@ -1,67 +1,112 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const ChapterActions = () => {
-  const [isTranslated, setIsTranslated] = useState(false);
-  const [content, setContent] = useState("This is the original content.");
-  const [isPersonalized, setIsPersonalized] = useState(false);
+type Props = {
+  originalContent: string;
+};
 
-  // TODO: Check if the user is authenticated
+const ChapterActions: React.FC<Props> = ({ originalContent }) => {
+  const [content, setContent] = useState(originalContent);
+  const [mode, setMode] = useState<"original" | "translated" | "personalized">(
+    "original"
+  );
+  const [loading, setLoading] = useState(false);
+
+  // TODO: Replace with real auth check later
   const isAuthenticated = true;
 
+  // 🔹 TRANSLATE TO URDU
   const handleTranslate = async () => {
-    const response = await fetch('api/translate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ content: "This is the original content." }),
-    });
+    setLoading(true);
+
+    const response = await fetch(
+      "https://backend-hackathon-01.vercel.app/translate",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: originalContent,
+          target_language: "Urdu",
+        }),
+      }
+    );
+
     const data = await response.json();
-    setContent(data.translated_content);
-    setIsTranslated(true);
+    setContent(data.translated_text);
+    setMode("translated");
+    setLoading(false);
   };
 
-  const handleShowOriginal = () => {
-    setContent("This is the original content.");
-    setIsTranslated(false);
-    setIsPersonalized(false);
-  };
-
+  // 🔹 PERSONALIZE CONTENT
   const handlePersonalize = async () => {
-    // TODO: Get user profile
+    setLoading(true);
+
     const userProfile = {
-      software_experience: 'Advanced',
-      hardware_access: 'GPU',
-      learning_depth: 'Practical',
+      software_experience: "Advanced",
+      hardware_access: "GPU",
+      learning_depth: "Practical",
     };
-    const response = await fetch('https://backend-hackathon-01.vercel.app/ask', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        question: "This is the original content.",
-        user_profile: userProfile,
-      }),
-    });
+
+    const response = await fetch(
+      "https://backend-hackathon-01.vercel.app/ask",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "user",
+              text: `
+Personalize the following chapter content for this user profile.
+
+USER PROFILE:
+${JSON.stringify(userProfile, null, 2)}
+
+CHAPTER CONTENT:
+${originalContent}
+`,
+            },
+          ],
+        }),
+      }
+    );
+
     const data = await response.json();
-    setContent(data.answer);
-    setIsPersonalized(true);
+    setContent(data.text);
+    setMode("personalized");
+    setLoading(false);
+  };
+
+  // 🔹 RESET
+  const handleShowOriginal = () => {
+    setContent(originalContent);
+    setMode("original");
   };
 
   return (
-    <div>
-      {isTranslated || isPersonalized ? (
-        <button onClick={handleShowOriginal}>Show Original</button>
+    <div style={{ marginBottom: "24px" }}>
+      {mode !== "original" ? (
+        <button onClick={handleShowOriginal}>↩ Show Original</button>
       ) : (
         <>
           <button onClick={handleTranslate}>Translate to Urdu</button>
           {isAuthenticated && (
-            <button onClick={handlePersonalize}>Personalize</button>
+            <button onClick={handlePersonalize} style={{ marginLeft: "10px" }}>
+              Personalize
+            </button>
           )}
         </>
       )}
-      <p>{content}</p>
+
+      {loading && <p> Processing...</p>}
+
+      <div
+        style={{
+          marginTop: "20px",
+          direction: mode === "translated" ? "rtl" : "ltr",
+        }}
+      >
+        <p>{content}</p>
+      </div>
     </div>
   );
 };
