@@ -1,0 +1,53 @@
+openapi: 3.0.0
+info:
+  title: Contact API
+  version: 1.0.0
+paths:
+  /contact:
+    post:
+      summary: Submit a contact form message
+      operationId: submitContactForm
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactSubmission'
+      responses:
+        '200':
+          description: Message received successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+                  message:
+                    type: string
+                    example: "Thank you for your message."
+        '400':
+          description: Invalid input
+        '500':
+          description: Server error
+
+components:
+  schemas:
+    ContactSubmission:
+      type: object
+      required:
+        - name
+        - email
+        - message
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        message:
+          type: string
+        user_id:
+          type: string
+          description: Optional ID if user is authenticated

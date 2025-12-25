@@ -2,6 +2,10 @@
 title: "Capstone: Building the Autonomous Humanoid"
 ---
 
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # Capstone: Building the Autonomous Humanoid
 
 
@@ -23,3 +27,6 @@ The robot starts at Point A. It must:
 
 ## Submission
 Submit a GitHub repository link containing the ROS 2 workspace, the trained model weights, and a Readme file explaining how to launch the demo. -->
+
+
+</ChapterTranslator>

@@ -2,6 +2,10 @@
 title: "Hardware Requirements and Lab Setup"
 ---
 
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # Hardware Requirements and Lab Setup
 
 
@@ -22,3 +26,6 @@ For Physical AI, we need edge computing capable of running neural networks.
 ## Power
 *   **LiPo / Li-Ion Batteries:** High discharge rates required.
 *   **BMS:** Battery Management Systems to prevent fires. -->
+
+
+</ChapterTranslator>

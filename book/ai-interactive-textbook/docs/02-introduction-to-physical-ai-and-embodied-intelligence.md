@@ -1,6 +1,10 @@
 ---
-title: "Introduction to Physical AI and Embodied Intelligence"
+title: "Physical AI and Embodied Intelligence"
 ---
+
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
 
 # Introduction to Physical AI and Embodied Intelligence
 
@@ -19,3 +23,6 @@ Physical AI refers to the use of Artificial Intelligence techniques to solve pro
 ## Current Landscape
 *   **Traditional Robotics:** Hard-coded logic, strict state machines.
 *   **Modern Physical AI:** End-to-end neural networks, Imitation Learning, and Sim-to-Real transfer. -->
+
+
+</ChapterTranslator>

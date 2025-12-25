@@ -2,6 +2,10 @@
 title: "Edge Kits, Digital Twin, and Robot Options"
 ---
 
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # Edge Kits, Digital Twin, and Robot Options
 
 
@@ -20,3 +24,6 @@ We will deploy a pipeline where:
 
 ## Sim-to-Real Transfer
 The process of training a neural network policy in the Digital Twin (Simulation) and deploying the weights to the Edge Kit (Physical Robot) without retraining. This is the "Holy Grail" of modern robotics.-->
+
+
+</ChapterTranslator>

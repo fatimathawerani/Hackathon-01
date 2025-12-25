@@ -3,6 +3,8 @@ from agents import set_tracing_disabled, function_tool
 import os
 from dotenv import load_dotenv
 from agents import enable_verbose_stdout_logging
+import cohere
+from qdrant_client import QdrantClient
 
 enable_verbose_stdout_logging()
 
@@ -25,17 +27,13 @@ openrouter_model = OpenAIChatCompletionsModel(
     openai_client=openrouter_client
 )
 
-import cohere
-from qdrant_client import QdrantClient
-
 # Initialize Cohere client
-cohere_client = cohere.Client("a4xSXF4KL1ZseodFka4U69s6tIpD1VzWxvJ4ZFLa")
+cohere_client = cohere.Client("COHERE_API_KEY")
 # Connect to Qdrant
 qdrant = QdrantClient(
-    url="https://7e7592e4-c1ca-4843-bf9b-87d9f9c7d57c.europe-west3-0.gcp.cloud.qdrant.io:6333",
-    api_key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.Pw2E54mv2FbsSdHQE7_hyt0lwNVtF21Wn99XsvdhgjY",
+     url="QDRANT_URL", 
+    api_key="QDRANT_API_KEY"
 )
-
 
 
 def get_embedding(text):
@@ -76,7 +74,7 @@ agent = Agent(
 
 result = Runner.run_sync(
     agent,
-    input="what is ROS?",
+    input="what is ROS 2?",
 )
 
 print(result.final_output)

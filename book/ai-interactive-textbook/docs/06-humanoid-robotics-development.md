@@ -2,6 +2,10 @@
 title: "Humanoid Robotics Development"
 ---
 
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # Humanoid Robotics Development
 
 
@@ -23,3 +27,6 @@ Walking on two legs is an unstable equilibrium problem.
 *   Power consumption (high torque requirements).
 *   Heat dissipation.
 *   Falling and recovery strategies. -->
+
+
+</ChapterTranslator>

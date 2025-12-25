@@ -2,6 +2,10 @@
 title: "Cloud-Native Lab Architecture"
 ---
 
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # Cloud-Native Lab Architecture
 
 
@@ -20,3 +24,6 @@ Robots are distributed systems.
 
 ## Calibration Station
 A flat, level surface with checkerboards specifically for calibrating cameras and IMUs. -->
+
+
+</ChapterTranslator>

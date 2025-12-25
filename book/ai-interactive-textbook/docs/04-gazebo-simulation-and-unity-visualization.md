@@ -2,6 +2,10 @@
 title: "Gazebo Simulation and Unity Visualization"
 ---
 
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # Gazebo Simulation and Unity Visualization
 
 
@@ -47,3 +51,6 @@ We use the modern Gazebo (formerly Ignition) for high-fidelity physics simulatio
 
 ## Lab Exercise
 We will spawn a simple 4-wheeled robot into a Gazebo "Mars Yard" environment and control it using ROS 2 teleoperation commands. -->
+
+
+</ChapterTranslator>

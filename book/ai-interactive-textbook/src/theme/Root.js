@@ -1,14 +1,11 @@
 import React from 'react';
-import ChatWidget from '../components/ChatWidget/chatbot';
-import ChapterActions from '../components/Translation/ChapterTranslator';
+// Ensure this path matches exactly where your AuthContext file is
+import { AuthProvider } from '@site/src/context/AuthContext'; 
 
-export default function Root({ children }) {
+export default function Root({children}) {
   return (
-    <>
+    <AuthProvider>
       {children}
-      <ChapterActions />
-      <ChatWidget />
-      
-    </>
+    </AuthProvider>
   );
 }

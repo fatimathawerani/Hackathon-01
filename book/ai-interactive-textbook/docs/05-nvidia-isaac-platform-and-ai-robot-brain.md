@@ -2,6 +2,10 @@
 title: "NVIDIA Isaac Platform and AI-Robot Brain"
 ---
 
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # NVIDIA Isaac Platform and AI-Robot Brain
 
 
@@ -21,3 +25,7 @@ This is crucial for **Reinforcement Learning**. Unlike Gazebo, Isaac Gym runs ph
 1.  Import robot asset (URDF) into Isaac Sim.
 2.  Apply physics materials (friction, mass).
 3.  Set up ROS 2 Bridge to communicate with your code. -->
+
+
+
+</ChapterTranslator>

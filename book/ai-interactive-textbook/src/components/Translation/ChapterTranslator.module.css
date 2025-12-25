@@ -1,79 +1,275 @@
-/* ChapterActions.module.css */
+/* ChapterTranslator.module.css - Minimal & Simple */
 
-.chapterActionsWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  max-width: 800px;
-  margin: 1rem auto;
-  font-family: Arial, sans-serif;
+/* Theme Variables - Subtle & Muted Colors */
+:root {
+  /* Dark Theme (Default) */
+  --translator-btn-bg: #374151;
+  --translator-btn-text: #f9fafb;
+  --translator-btn-hover: #4b5563;
+  --translator-btn-shadow: rgba(0, 0, 0, 0.2);
+  --translator-error-bg: rgba(248, 113, 113, 0.1);
+  --translator-error-border: rgba(248, 113, 113, 0.25);
+  --translator-error-text: #fca5a5;
 }
 
-.actions {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+[data-theme='light'] {
+  --translator-btn-bg: #f3f4f6;
+  --translator-btn-text: #1f2937;
+  --translator-btn-hover: #e5e7eb;
+  --translator-btn-shadow: rgba(0, 0, 0, 0.08);
+  --translator-error-bg: rgba(239, 68, 68, 0.06);
+  --translator-error-border: rgba(239, 68, 68, 0.2);
+  --translator-error-text: #dc2626;
 }
 
-.button {
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
+[data-theme='dark'] {
+  --translator-btn-bg: #1f2937;
+  --translator-btn-text: #e5e7eb;
+  --translator-btn-hover: #374151;
+  --translator-btn-shadow: rgba(0, 0, 0, 0.3);
+  --translator-error-bg: rgba(248, 113, 113, 0.12);
+  --translator-error-border: rgba(248, 113, 113, 0.3);
+  --translator-error-text: #fca5a5;
+}
+
+/* Wrapper */
+.translatorWrapper {
+  margin: 1.5rem 0;
+}
+
+/* Button */
+.translateButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  margin-bottom: 1rem;
+  background: var(--translator-btn-bg);
+  color: var(--translator-btn-text);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  font-size: 0.95rem;
   font-weight: 600;
-  color: #fff;
-  background-color: #0070f3;
-  border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px var(--translator-btn-shadow);
 }
 
-.button:hover {
-  background-color: #005bb5;
+[data-theme='light'] .translateButton {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .translateButton {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.translateButton:hover {
+  background: var(--translator-btn-hover);
   transform: translateY(-1px);
+  box-shadow: 0 4px 8px var(--translator-btn-shadow);
 }
 
-.resetButton {
-  background-color: #555;
+.translateButton:active {
+  transform: translateY(0);
 }
 
-.resetButton:hover {
-  background-color: #333;
+.translateButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
-.personalizeButton {
-  background-color: #ff9800;
+/* Button Content */
+.buttonContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.personalizeButton:hover {
-  background-color: #fb8c00;
+.icon {
+  font-size: 1.2rem;
 }
 
-.loadingText {
-  font-style: italic;
-  color: #666;
-  margin-top: 0.5rem;
+/* Loader */
+.loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: var(--translator-btn-text);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
 }
 
-.contentWrapper {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-left: 4px solid #0070f3;
-  border-radius: 8px;
-  background-color: #fff;
-  line-height: 1.6;
-  font-size: 1rem;
-  color: #333;
-  white-space: pre-wrap;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
+/* Error Message */
+.errorMessage {
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+  background: var(--translator-error-bg);
+  border: 1px solid var(--translator-error-border);
+  border-radius: 6px;
+  color: var(--translator-error-text);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.errorMessage::before {
+  content: '⚠️';
+  font-size: 1.1rem;
+}
+
+/* Retry Button */
+.retryButton {
+  padding: 6px 14px;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--translator-error-border);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--translator-error-text);
+  transition: all 0.2s ease;
+}
+
+.retryButton:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .retryButton {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .retryButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Content */
+.content {
+  line-height: 1.7;
+}
+
+/* Urdu Content */
 .urduContent {
   direction: rtl;
   text-align: right;
-  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Urdu Typesetting", Arial, sans-serif;
-  font-size: 1.1rem;
+  font-family: 'Noto Nastaliq Urdu', Arial, sans-serif;
   line-height: 2;
+  font-size: 1.1em;
+}
+
+/* English Content */
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .translateButton {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .errorMessage {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .retryButton {
+    width: 100%;
+  }
+}
+
+
+.customizeButton {
+  /* You can make it look distinct or similar to the translate button */
+  background: var(--translator-btn-bg); /* Use same colors for consistency */
+  border-color: rgba(0, 0, 0, 0.15); /* Slightly different border perhaps */
+}
+
+/* For light theme */
+[data-theme='light'] .customizeButton {
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* For dark theme */
+[data-theme='dark'] .customizeButton {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.customizeButton:hover {
+  background: var(--translator-btn-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px var(--translator-btn-shadow);
+}
+
+/* ... Keep your existing button and wrapper styles ... */
+
+/* New Styles for the Customized Markdown Content */
+.customizedContent {
+  margin-top: 1rem;
+  line-height: 1.6;
+  font-family: inherit;
+  color: var(--ifm-font-color-base, inherit);
+}
+
+.customizedContent h1, 
+.customizedContent h2, 
+.customizedContent h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.customizedContent ul, 
+.customizedContent ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.customizedContent li {
+  margin-bottom: 0.25rem;
+}
+
+.customizedContent p {
+  margin-bottom: 1rem;
+}
+
+/* TABLE STYLING */
+.customizedContent table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto; /* Adds scrollbar if table is too wide */
+}
+
+.customizedContent th,
+.customizedContent td {
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+/* Use Docusaurus theme variables if available, otherwise gray fallback */
+.customizedContent th {
+  background-color: var(--ifm-color-emphasis-100, #f3f4f6);
+  font-weight: bold;
+}
+
+[data-theme='dark'] .customizedContent th {
+  background-color: var(--ifm-color-emphasis-100, #374151);
+  border-color: #4b5563;
+}
+
+[data-theme='dark'] .customizedContent td {
+  border-color: #4b5563;
+}
+
+.customizedContent strong {
+  font-weight: bold;
 }

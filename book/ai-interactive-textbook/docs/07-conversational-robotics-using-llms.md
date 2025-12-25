@@ -2,6 +2,11 @@
 title: "Conversational Robotics using LLMs"
 ---
 
+
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # Conversational Robotics using LLMs
 
 
@@ -20,3 +25,7 @@ Newer models (like Google's RT-2 or various Open Source alternatives) process vi
 
 ## Lab Exercise
 Build a "Chat-with-your-Robot" interface where natural language commands trigger ROS 2 service calls. -->
+
+
+
+</ChapterTranslator>

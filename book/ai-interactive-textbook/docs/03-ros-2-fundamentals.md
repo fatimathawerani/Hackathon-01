@@ -2,6 +2,10 @@
 title: "ROS 2 Fundamentals"
 ---
 
+import ChapterTranslator from '@site/src/components/Translation/ChapterTranslator';
+
+<ChapterTranslator>
+
 # ROS 2 Fundamentals
 
 
@@ -26,3 +30,6 @@ ROS 2 is built on top of DDS, a real-time communication standard used in militar
 
 ## Hands-on: Your First Node
 In this chapter, we will write a simple Python publisher node using `rclpy` to simulate a heartbeat sensor.-->
+
+
+</ChapterTranslator>
