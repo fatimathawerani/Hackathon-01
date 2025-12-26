@@ -16,7 +16,7 @@
   min-width: 250px;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 20px rgb(95, 157, 250);
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -24,7 +24,7 @@
 /* Hover effect */
 .featureCard:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(79, 156, 249, 0.6); /* Accent glow */
+  box-shadow: 0 12px 30px rgba(79, 155, 249, 0.959); /* Accent glow */
 }
 
 /* Feature SVG */

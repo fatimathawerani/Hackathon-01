@@ -69,7 +69,7 @@ export default function NavbarItem({ mobile }) {
           </Link>
         </li>
         <li>
-          <Link to="/docs/chapter-1-physical-ai" className="dropdown__link">
+          <Link to="/docs/intro" className="dropdown__link">
             Book
           </Link>
         </li>

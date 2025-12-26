@@ -28,7 +28,7 @@ export default function Login() {
   };
 
   if (user) {
-    history.push('/docs/chapter-1-physical-ai');
+    history.push('/docs/intro');
     return null;
   }
 
@@ -75,7 +75,7 @@ export default function Login() {
           </form>
 
           <div className={styles.linkText}>
-            Don't have an account? <Link to="/register">Create one here</Link>
+            Don't have an account? <Link to="/register">Signup here</Link>
           </div>
         </div>
       </div>

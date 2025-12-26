@@ -155,14 +155,16 @@
   line-height: 1.7;
 }
 
-/* Urdu Content */
-.urduContent {
-  direction: rtl;
-  text-align: right;
-  font-family: 'Noto Nastaliq Urdu', Arial, sans-serif;
-  line-height: 2;
-  font-size: 1.1em;
+/* Dark theme Urdu content */
+[data-theme='dark'] .urduContent {
+  color: #ffffff;
 }
+
+/* Light theme Urdu content */
+[data-theme='light'] .urduContent {
+  color: #000000; /* black on light theme */
+}
+
 
 /* English Content */
 

@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
@@ -11,38 +11,38 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Humanoids in Action',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Watch humanoid robots flex their AI-powered moves—learning, dancing, 
+        and interacting like they’re straight out of a sci-fi flick.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Next-Gen AI Brains',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Smarter, faster, cooler AI engines driving everything from robotics 
+        experiments to virtual companions. Think neural networks on steroids.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Plug & Play Tech',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Drag, drop, and deploy interactive robotic apps with React magic. 
+        Your code talks to bots, and bots respond like a pro gamer squad.
       </>
     ),
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({ title, Svg, description }: FeatureItem) {
   return (
     <div className={clsx(styles.featureCard)}>
       <div className="text--center">

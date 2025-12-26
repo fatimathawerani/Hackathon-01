@@ -1,10 +1,12 @@
-/* Hero Section */
+/* ==============================
+   Hero Section - Light Dull Blue Theme
+   ============================== */
 .heroBanner {
   position: relative;
   text-align: center;
   padding: 6rem 2rem;
-  background: linear-gradient(135deg, #0a1f44, #081738); /* navy gradient */
-  color: #a7dfff;
+  background: linear-gradient(135deg, #d1e0ea, #c4d0dc); /* soft dull blue gradient */
+  color: #000000; /* black text */
   overflow: hidden;
 }
 
@@ -14,20 +16,21 @@
   margin-bottom: 1rem;
   position: relative;
   z-index: 2;
+  color: #08264e; /* dark muted text for title */
 }
 
 .heroSubtitle {
   font-size: 1.5rem;
   margin-bottom: 2.5rem;
-  color: #fde3f1;
+  color: #25273c; /* darker muted text for subtitle */
   position: relative;
   z-index: 2;
 }
 
 .highlight {
-  color: #85e2e6; /* bright accent */
+  color: #344977; /* dull blue accent */
   font-weight: 700;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
 }
 
 /* Animated Shapes */
@@ -44,14 +47,14 @@
 .shape {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.3;
+  opacity: 0.25;
   animation: float 12s infinite ease-in-out;
 }
 
 .shape:nth-child(1) {
   width: 200px;
   height: 200px;
-  background: #4f9cf9;
+  background: #7d99a7; /* duller blue */
   top: 10%;
   left: 5%;
   animation-delay: 0s;
@@ -60,7 +63,7 @@
 .shape:nth-child(2) {
   width: 300px;
   height: 300px;
-  background: #6bdcff;
+  background: #a1b3c0; /* light blue */
   top: 30%;
   left: 70%;
   animation-delay: 2s;
@@ -69,7 +72,7 @@
 .shape:nth-child(3) {
   width: 150px;
   height: 150px;
-  background: #acdef5;
+  background: #c4ccd7; /* soft pale blue */
   top: 60%;
   left: 40%;
   animation-delay: 4s;
@@ -90,7 +93,7 @@
 }
 
 .gradientButton {
-  background: linear-gradient(90deg, #4f9cf9, #76c7ff);
+  background: linear-gradient(90deg, #1b3564, #7d99a7); /* dull gradient for primary button */
   color: #fff;
   font-weight: 600;
   padding: 1rem 2rem;
@@ -100,12 +103,12 @@
 
 .gradientButton:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(79, 156, 249, 0.5);
+  box-shadow: 0 10px 20px rgb(64, 110, 175);
 }
 
 .gradientButtonSecondary {
-  background: linear-gradient(90deg, #a8b5ff, #8f7fe9);
-  color: #fff;
+  background: linear-gradient(90deg, #a1b3c0, #c4ccd7); /* light secondary button */
+  color: #000; /* black text for contrast */
   font-weight: 600;
   padding: 1rem 2rem;
   border-radius: 0.75rem;
@@ -114,7 +117,7 @@
 
 .gradientButtonSecondary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(217, 135, 255, 0.5);
+  box-shadow: 0 10px 20px rgb(64, 110, 175);
 }
 
 /* Responsive */

@@ -42,42 +42,44 @@ export default function ChapterCustomization({ children }: ChapterCustomizationP
   }, []);
 
   // Translation using backend API
-  async function translateToUrdu(text: string): Promise<string> {
-    // Get token directly from localStorage since it's not exposed in AuthContext value
-    const token = localStorage.getItem('access_token');
+  
+// ✅ NEW: Frontend-only MyMemory translation
+async function translateToUrdu(text: string): Promise<string> {
+  try {
+    // MyMemory works better if text is chunked (optional but safe)
+    const chunkSize = 400;
+    const chunks: string[] = [];
 
-    if (!token || !user) {
-      throw new Error('You must be logged in to translate content.');
+    for (let i = 0; i < text.length; i += chunkSize) {
+      chunks.push(text.slice(i, i + chunkSize));
     }
 
-    try {
-      const response = await fetch(`${BACKEND_URL}/translate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-          // 'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          text: text,
-          target_language: 'Urdu'
-        }),
-      });
+    let translatedResult = '';
 
+    for (const chunk of chunks) {
+      const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(
+        chunk
+      )}&langpair=en|ur`;
+
+      const response = await fetch(url);
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || 'Translation failed');
+        throw new Error('Translation API failed');
       }
 
-      const data: { translated_text: string } = await response.json();
-      return data.translated_text;
-    } catch (err) {
-      console.error('Translation error:', err);
-      if (err instanceof Error) {
-        throw err;
-      }
-      throw new Error('Failed to translate content. Please try again.');
+      const data = await response.json();
+
+      translatedResult +=
+        data?.responseData?.translatedText
+          ? data.responseData.translatedText + ' '
+          : '';
     }
+
+    return translatedResult.trim();
+  } catch (error) {
+    console.error('MyMemory translation error:', error);
+    throw new Error('Failed to translate content');
   }
+}
 
   const handleTranslate = async () => {
     // Note: If content is customized (Markdown), translation might break formatting.

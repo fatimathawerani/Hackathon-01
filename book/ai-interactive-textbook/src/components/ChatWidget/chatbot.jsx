@@ -81,7 +81,7 @@ const ChatWidget = () => {
       </button>
 
       {isOpen && (
-        <div className={styles.chatWindow}>
+        <div className={`${styles.chatWindow} ${isOpen ? styles.open : ''}`}>
           <div className={styles.chatHeader}>
             <h3>AI Chatbot</h3>
             <button onClick={toggleChat}>X</button>
