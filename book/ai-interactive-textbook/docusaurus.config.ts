@@ -60,18 +60,13 @@ const config: Config = {
     ],
   ],
 
-  themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
-    colorMode: {
-      respectPrefersColorScheme: true,
-    },
-    navbar: {
-      title: 'Physical AI',
-      logo: {
-        alt: 'Physical AI Logo',
-        src: 'img/logo.svg',
-      },
+ themeConfig: {
+  colorMode: {
+    respectPrefersColorScheme: true,
+  },
+  navbar: {
+   // remove title and logo object
+
       items: [
         { to: '/docs/intro', label: 'Chapters', position: 'left' },        {
           label: 'More',
@@ -97,15 +92,17 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            { label: 'LinkedIn', href: 'https://stackoverflow.com/questions/tagged/docusaurus' },
-            { label: 'Discord', href: 'https://discordapp.com/invite/docusaurus' },
-            { label: 'X', href: 'https://x.com/docusaurus' },
+            { label: 'LinkedIn', href: 'https://www.linkedin.com/in/fatima-thawerani-15b27b296' },
+            { label: 'Discord', href: 'https://discord.gg/6rjTm7qC' },
+            { label: 'Medium', href: 'https://medium.com/@fatimathawerani' },
           ],
         },
         {
           title: 'More',
           items: [
-            { label: 'GitHub', href: 'https://github.com/facebook/docusaurus' },
+            { label: 'GitHub', href: 'https://github.com/fatimathawerani/Hackathon-01' },
+            { label: 'Vercel', href: 'https://vercel.com/fatima-thaweranis-project' },
+
           ],
         },
       ],
