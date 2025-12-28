@@ -41,7 +41,7 @@ load_dotenv()
 origins = [
     "http://localhost:3000",
     "http://localhost:3001",
-    "http://127.00.1:3000",
+    "http://127.00.1:8000",
     "https://hackathon-01-eta.vercel.app"
 ]
 
