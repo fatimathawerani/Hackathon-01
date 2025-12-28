@@ -19,7 +19,7 @@ export default function Login() {
     setLoading(true);
     try {
       await login(email, password);
-      history.push('/docs/chapter-1-physical-ai');
+      history.push('/docs/intro');
     } catch (err) {
       setError('Invalid email or password. Please try again.');
     } finally {
