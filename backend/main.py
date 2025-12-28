@@ -10,6 +10,7 @@ import os
 from dotenv import load_dotenv
 from typing import List, Literal
 from sqlalchemy.ext.asyncio.session import AsyncSession 
+from my_config import open_router_config, gemini_key
 
 # --- AUTH & DB IMPORTS ---
 from auth.models import User # Assuming User model has software_experience and hardware_experience
@@ -33,20 +34,17 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+load_dotenv()
+
 # --- CORS SETUP ---
 # Combine your WEB_URL with localhost for flexibility
 origins = [
     "http://localhost:3000",
-    "http://127.0.0.1:8000",
+    "http://localhost:3001",
+    "http://127.00.1:3000",
+    "https://hackathon-01-eta.vercel.app"
 ]
 
-load_dotenv()
-
-web_url = os.getenv("WEB_URL")
-if web_url:
-    origins.append(web_url)
-
-gemini_key = os.getenv("GEMINI_API_KEY")
 
 print("🌐 CORS allowed origins:", origins)
 
@@ -54,9 +52,14 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=[
+        "Authorization",
+        "Content-Type",
+        "Accept",
+        "Origin",
+        "X-Requested-With",
+    ],
 )
 
 # ==========================================
@@ -317,5 +320,5 @@ async def health():
         "status": "healthy",
         "response": "api set" if gemini_key else "API key missing",
         "api_key_set": bool(gemini_key),
-        "web_url": web_url or "not set",
+        "web_url": os.getenv("WEB_URL", "not configured"),
     }
