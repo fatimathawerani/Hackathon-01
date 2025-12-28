@@ -37,7 +37,7 @@ export default function Register() {
 
       // Auto login after success
       await login(email, password);
-      history.push('/docs/chapter-1-physical-ai');
+      history.push('/docs/intro');
     } catch (err) {
       setError(err.response?.data?.detail || 'Registration failed. Please try again.');
     } finally {
