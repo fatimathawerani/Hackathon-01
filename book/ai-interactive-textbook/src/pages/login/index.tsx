@@ -4,6 +4,8 @@ import Link from '@docusaurus/Link'; // Better for internal linking
 import { useHistory } from '@docusaurus/router';
 import { useAuth } from '../../context/AuthContext';
 import styles from './styles.module.css'; // Import the CSS
+import { useEffect } from 'react';
+
 
 export default function Login() {
   const { login, user } = useAuth();
@@ -27,10 +29,13 @@ export default function Login() {
     }
   };
 
-  if (user) {
+  useEffect(() => {
+  if (!loading && user) {
     history.push('/docs/intro');
-    return null;
   }
+}, [loading, user, history]);
+if (loading) return null;
+
 
   return (
     <Layout title="Login">
