@@ -10,7 +10,7 @@ import os
 from dotenv import load_dotenv
 from typing import List, Literal
 from sqlalchemy.ext.asyncio.session import AsyncSession 
-from my_config import open_router_config, gemini_key
+from my_config import open_router_config, gemini_key, groq_key
 
 # --- AUTH & DB IMPORTS ---
 from auth.models import User # Assuming User model has software_experience and hardware_experience
