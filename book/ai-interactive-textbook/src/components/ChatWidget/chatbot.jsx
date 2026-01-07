@@ -12,12 +12,11 @@ const ChatWidget = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSendMessage = async () => {
+ const handleSendMessage = async () => {
   if (!inputMessage.trim()) return;
 
   const userMessage = inputMessage;
 
-  // Show user message immediately
   setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
   setInputMessage('');
   setIsTyping(true);
@@ -31,12 +30,7 @@ const ChatWidget = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          messages: [
-            {
-              role: 'user',
-              text: userMessage,
-            },
-          ],
+          message: userMessage,
         }),
       }
     );
@@ -47,16 +41,15 @@ const ChatWidget = () => {
 
     const data = await response.json();
 
-    // ✅ Backend returns { role: "bot", text: "..." }
     setMessages(prev => [
       ...prev,
-      { text: data.text, sender: 'bot' },
+      { text: data.reply || data.text || 'No response', sender: 'bot' },
     ]);
   } catch (error) {
     console.error('Chatbot error:', error);
     setMessages(prev => [
       ...prev,
-      { text: 'Could not connect to chatbot.', sender: 'bot' },
+      { text: 'Could not connect to chatbot ❌', sender: 'bot' },
     ]);
   } finally {
     setIsTyping(false);
