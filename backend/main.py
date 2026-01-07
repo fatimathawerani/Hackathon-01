@@ -306,7 +306,7 @@ You operate strictly under these constraints and respond consistently according 
     result = await Runner.run(
         agent,
         input=conversation_input,
-        run_config=open_router_config,
+        run_config=groq_key,
     )
 
     print("✅ Response generated successfully")
@@ -318,7 +318,7 @@ You operate strictly under these constraints and respond consistently according 
 async def health():
     return {
         "status": "healthy",
-        "response": "api set" if gemini_key else "API key missing",
-        "api_key_set": bool(gemini_key),
+        "response": "api set" if groq_key else "API key missing",
+        "api_key_set": bool(groq_key),
         "web_url": os.getenv("WEB_URL", "not configured"),
     }
