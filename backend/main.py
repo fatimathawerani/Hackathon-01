@@ -38,12 +38,8 @@ load_dotenv()
 
 # --- CORS SETUP ---
 # Combine your WEB_URL with localhost for flexibility
-origins = [
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://127.0.0.1:8000",
-    "https://hackathon-01-eta.vercel.app"
-]
+origins = ["*"]  # Allow all origins (for testing only)
+
 
 
 print("🌐 CORS allowed origins:", origins)
@@ -52,15 +48,11 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=[
-        "Authorization",
-        "Content-Type",
-        "Accept",
-        "Origin",
-        "X-Requested-With",
-    ],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
+
 
 # ==========================================
 # AUTHENTICATION ENDPOINTS

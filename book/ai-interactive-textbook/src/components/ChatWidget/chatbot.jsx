@@ -17,6 +17,7 @@ const ChatWidget = () => {
 
   const userMessage = inputMessage;
 
+  // Show user message immediately
   setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
   setInputMessage('');
   setIsTyping(true);
@@ -30,7 +31,9 @@ const ChatWidget = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          message: userMessage,
+          messages: [
+            { role: "user", text: userMessage }
+          ],
         }),
       }
     );
@@ -43,7 +46,7 @@ const ChatWidget = () => {
 
     setMessages(prev => [
       ...prev,
-      { text: data.reply || data.text || 'No response', sender: 'bot' },
+      { text: data.text, sender: 'bot' },
     ]);
   } catch (error) {
     console.error('Chatbot error:', error);
@@ -55,6 +58,7 @@ const ChatWidget = () => {
     setIsTyping(false);
   }
 };
+
 
 
   const handleClearChat = () => {
