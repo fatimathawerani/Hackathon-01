@@ -8,62 +8,48 @@ const ChatWidget = () => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const toggleChat = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleChat = () => setIsOpen(!isOpen);
 
- const handleSendMessage = async () => {
-  if (!inputMessage.trim()) return;
+  const handleSendMessage = async () => {
+    const trimmedMessage = inputMessage.trim();
+    if (!trimmedMessage || isTyping) return;
 
-  const userMessage = inputMessage;
+    // Add user's message
+    setMessages(prev => [...prev, { text: trimmedMessage, sender: 'user' }]);
+    setInputMessage('');
+    setIsTyping(true);
 
-  // Show user message immediately
-  setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
-  setInputMessage('');
-  setIsTyping(true);
-
-  try {
-    const response = await fetch(
-      'https://backend-hackathon-01.vercel.app/ask',
-      {
+    try {
+      const response = await fetch('https://backend-hackathon-01.vercel.app/ask', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: [
-            { role: "user", text: userMessage }
-          ],
+          messages: [{ role: 'user', text: trimmedMessage }],
         }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    );
 
-    if (!response.ok) {
-      throw new Error(`HTTP error ${response.status}`);
+      const data = await response.json();
+
+      // Some backends return data.result or data.text
+      const botReply = data.text || data.reply || 'No response from bot';
+
+      setMessages(prev => [...prev, { text: botReply, sender: 'bot' }]);
+    } catch (err) {
+      console.error('Chatbot error:', err);
+      setMessages(prev => [
+        ...prev,
+        { text: 'Could not connect to chatbot. Please try again later.', sender: 'bot' },
+      ]);
+    } finally {
+      setIsTyping(false);
     }
-
-    const data = await response.json();
-
-    setMessages(prev => [
-      ...prev,
-      { text: data.text, sender: 'bot' },
-    ]);
-  } catch (error) {
-    console.error('Chatbot error:', error);
-    setMessages(prev => [
-      ...prev,
-      { text: 'Could not connect to chatbot ❌', sender: 'bot' },
-    ]);
-  } finally {
-    setIsTyping(false);
-  }
-};
-
-
-
-  const handleClearChat = () => {
-    setMessages([]);
   };
+
+  const handleClearChat = () => setMessages([]);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -83,32 +69,37 @@ const ChatWidget = () => {
             <h3>AI Chatbot</h3>
             <button onClick={toggleChat}>X</button>
           </div>
+
           <div className={styles.messageList}>
             {messages.map((msg, index) => (
               <div key={index} className={`${styles.message} ${styles[msg.sender]}`}>
                 {msg.text}
               </div>
             ))}
+
             {isTyping && (
               <div className={`${styles.message} ${styles.bot}`}>
                 <em>Bot is typing...</em>
               </div>
             )}
+
             <div ref={messagesEndRef} />
           </div>
+
           <div className={styles.chatInputContainer}>
             <input
               type="text"
               className={styles.chatInput}
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+              onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="Type your message..."
             />
             <button className={styles.sendButton} onClick={handleSendMessage}>
               Send
             </button>
           </div>
+
           <button className={styles.clearChatButton} onClick={handleClearChat}>
             Clear Chat
           </button>
